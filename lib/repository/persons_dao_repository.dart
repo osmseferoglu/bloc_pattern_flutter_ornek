@@ -3,7 +3,6 @@
 
 import 'package:bloc_pattern_flutter_ornek/cubit/homepage_cubit.dart';
 import 'package:bloc_pattern_flutter_ornek/entity/person.dart';
-import 'package:bloc_pattern_flutter_ornek/main.dart';
 import 'package:dio/dio.dart';
 
 class KisilerDaoRepository {
@@ -23,10 +22,10 @@ class KisilerDaoRepository {
     }
   }
 
-  Future<Response> addPerson(String kisi_ad, String kisi_tel) async {
+  Future<Response> addPerson(String kisiAd, String kisiTel) async {
     try {
       var url = "http://85.159.71.66:8080/api/persons";
-      var data = {"kisi_ad": kisi_ad, "kisi_tel": kisi_tel};
+      var data = {"kisi_ad": kisiAd, "kisi_tel": kisiTel};
       var response = await Dio().post(url, data: FormData.fromMap(data));
       print(response.toString());
       MyAppStates().isError = false;

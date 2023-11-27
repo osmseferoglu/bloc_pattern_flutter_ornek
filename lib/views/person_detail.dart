@@ -11,8 +11,8 @@ class DetailPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            person.kisi_ad,
+          title: const Text(
+            "Detail",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -34,20 +34,25 @@ class DetailPage extends StatelessWidget {
                 );
               },
             ),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Name: ${person.kisi_ad}',
-                    style: const TextStyle(fontSize: 20),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: Text(person.kisi_ad.toUpperCase(),
                   ),
-                  Text(
-                    'Tel No: ${person.kisi_tel}',
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),)
+                  subtitle: const Text("Name"),
+                  onTap: (){
+
+                  },
+                  
+            ),ListTile(
+              leading: const Icon(Icons.phone),
+              title: Text(
+                person.kisi_tel,
+              ),
+              subtitle: const Text("Phone Number"),
+              onTap: (){
+
+              },
+            )
             
           ],
         ));

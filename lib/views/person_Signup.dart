@@ -27,28 +27,34 @@ class _SignupViewState extends State<SignupView> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Center(
+      body: 
+      Center(
+        
         child: Padding(
           padding:
               const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
           child: Column(
             children: [
+              const SizedBox(height: 20),
+              const Icon(Icons.account_circle,size: 150,color: Colors.blue,),
+              const SizedBox(height: 60),
               TextField(
                 controller: Name,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person),
                   hintText: 'Name',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextField(
                 keyboardType: TextInputType.phone,
                 controller: Phone,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.phone),
                   hintText: 'Phone',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
                 ),
               ),
               const SizedBox(height: 20),
@@ -62,9 +68,9 @@ class _SignupViewState extends State<SignupView> {
                     SnackBar(
                       content: const Text("Failed to add Person"),
                       action: SnackBarAction(
-                        label: "Dismiss",
+                        label: "Try Again",
                         onPressed: () {
-
+                          
                         },
                       ),
                     ),
