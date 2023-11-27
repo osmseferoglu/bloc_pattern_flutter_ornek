@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, avoid_print, non_constant_identifier_names
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_pattern_flutter_ornek/entity/person.dart';
@@ -13,4 +13,15 @@ class AnasayfaCubit extends Cubit<List<Kisi>> {
     // print(liste);
     emit(liste);
   }
+
+  Future<void> kisiEkle(String kisi_ad, String kisi_tel) async {
+    var response = await kisidao.addPerson(kisi_ad, kisi_tel);
+    print(response);
+    kisileriYukle();
+  }
+}
+class MyAppStates{
+
+  bool isError  = false;
+
 }

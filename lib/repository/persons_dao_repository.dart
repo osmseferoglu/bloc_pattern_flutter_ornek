@@ -1,6 +1,9 @@
-import 'dart:convert';
+// ignore_for_file: avoid_print
 
+
+import 'package:bloc_pattern_flutter_ornek/cubit/homepage_cubit.dart';
 import 'package:bloc_pattern_flutter_ornek/entity/person.dart';
+import 'package:bloc_pattern_flutter_ornek/main.dart';
 import 'package:dio/dio.dart';
 
 class KisilerDaoRepository {
@@ -26,10 +29,13 @@ class KisilerDaoRepository {
       var data = {"kisi_ad": kisi_ad, "kisi_tel": kisi_tel};
       var response = await Dio().post(url, data: FormData.fromMap(data));
       print(response.toString());
+      MyAppStates().isError = false;
       return response;
     } catch (error) {
       print("Error adding person: $error");
+      MyAppStates().isError=true;
       throw Exception("Failed to add person");
+
     }
   }
 }

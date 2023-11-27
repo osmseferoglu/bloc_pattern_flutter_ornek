@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 import 'package:bloc_pattern_flutter_ornek/cubit/homepage_cubit.dart';
 import 'package:bloc_pattern_flutter_ornek/entity/person.dart';
+import 'package:bloc_pattern_flutter_ornek/views/person_Signup.dart';
+import 'package:bloc_pattern_flutter_ornek/views/person_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,32 +22,47 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-        appBar: AppBar(title: const Text("Kişiler Bloc Uygulaması")),
-        body: BlocBuilder<AnasayfaCubit, List<Kisi>>(
-          builder: (context, kisiListesi) {
-            if (kisiListesi.isNotEmpty) {
-              return ListView.builder(
-                itemCount: kisiListesi.length,
-                itemBuilder: (context, indeks) {
-                  var kisi = kisiListesi[indeks];
-                  return GestureDetector(
+    return Scaffold(
+      appBar: AppBar(
+          title: const Text(
+        "Kişiler Bloc Uygulaması",
+        style: TextStyle(color: Colors.white),
+      )),
+      body: BlocBuilder<AnasayfaCubit, List<Kisi>>(
+        builder: (context, kisiListesi) {
+          if (kisiListesi.isNotEmpty) {
+            return ListView.builder(
+              itemCount: kisiListesi.length,
+              itemBuilder: (context, index) {
+                var kisi = kisiListesi[index];
+                return ListTile(
+                    title: Text(kisi.kisi_ad),
+                    subtitle: Text(kisi.kisi_tel),
+                    trailing: Icon(Icons.chevron_right),
                     onTap: () {
-                      print("tıklandı");
-                    },
-                    child: 
-                    Padding(padding: EdgeInsets.all(8),child:
-                    Row(children: [Text("${kisi.kisi_ad}"), Text(" ${kisi.kisi_tel}")]),)
-                    ,
-                    
-                  );
-                },
-              );
-            } else {
-              return const Center();
-            }
+                      //Navigation to DetailPage
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailPage(),
+                            settings: RouteSettings(arguments: kisi),
+                          ));
+                    });
+              },
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SignupView()));
           },
-        )
-        );
+          child: const Icon(Icons.add)),
+    );
   }
 }
