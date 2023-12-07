@@ -1,6 +1,7 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print
+// ignore_for_file: non_constant_identifier_names, avoid_print, file_names
 
 import 'package:bloc_pattern_flutter_ornek/cubit/homepage_cubit.dart';
+import 'package:bloc_pattern_flutter_ornek/sqlite/sql_service.dart';
 import 'package:flutter/material.dart';
 
 
@@ -62,6 +63,8 @@ class _SignupViewState extends State<SignupView> {
                 onPressed: () {
                   kaydet(Name.text, Phone.text);
                   AnasayfaCubit().kisiEkle(Name.text, Phone.text);
+                  
+                  SqliteService().insertPerson(1,Name.text,Phone.text);
                   if (MyAppStates().isError = true) {
                    
                   ScaffoldMessenger.of(context).showSnackBar(

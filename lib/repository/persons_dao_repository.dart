@@ -6,8 +6,8 @@ import 'package:bloc_pattern_flutter_ornek/entity/person.dart';
 import 'package:dio/dio.dart';
 
 class KisilerDaoRepository {
-  List<Kisi> parseKisiCevap(dynamic data) {
-    return KisiResponse.fromJson(data).kisiler;
+  List<Kisi> parseKisiCevap(str) {
+    return KisiResponse.fromJson(str).kisiler;
   }
 
   Future<List<Kisi>> fetchAllPersons() async {

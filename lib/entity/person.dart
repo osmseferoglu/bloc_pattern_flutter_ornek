@@ -46,4 +46,13 @@ class Kisi {
       kisi_tel: json['kisi_tel'] as String,
     );
   }
+   Map<String, Object> toMap() {
+    return {'id': kisi_id, 'kisi_ad': kisi_ad, 'kisi_tel': kisi_tel};
+  }
+  Kisi.fromMap(Map<String, Object?> map)
+      : this(
+          kisi_id: map['id'] as int,
+          kisi_ad: map['kisi_ad'] as String,
+          kisi_tel: map['kisi_tel'] as String,
+        );
 }
